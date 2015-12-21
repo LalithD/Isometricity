@@ -48,6 +48,33 @@
             ctx.fillStyle = "#888";
             ctx.fill();
             ctx.closePath();
+
+            if(Math.random() > 0.5) {
+                drawWindowLeft(x - xChange / 9, y + yChange / 9);
+            } if(Math.random() > 0.5) {
+                drawWindowLeft(x - xChange / 2, y + yChange / 9);
+            } if(Math.random() > 0.5) {
+                drawWindowLeft(x - xChange / 9, y + yChange / 2);
+            } if(Math.random() > 0.5) {
+                drawWindowLeft(x - xChange / 2, y + yChange / 2);
+            }
+
+        }
+
+        function drawWindowLeft(x, y) {
+            let windowSize = BLOCK_SIZE / 3;
+            let xChange = windowSize * Math.sqrt(3) / 2;
+            let yChange = windowSize / 2;
+
+            ctx.beginPath();
+            ctx.moveTo(x, y + windowSize);
+            ctx.lineTo(x - xChange, y + yChange);
+            ctx.lineTo(x - xChange, y - yChange);
+            ctx.lineTo(x, y);
+            ctx.lineTo(x, y + windowSize);
+            ctx.fillStyle = "#d5e612";
+            ctx.fill();
+            ctx.closePath();
         }
 
         function makeBuilding(x, y, height) {
