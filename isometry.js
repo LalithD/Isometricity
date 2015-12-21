@@ -9,6 +9,7 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
+<<<<<<< HEAD
         /* Constants */
         const BLOCK_SIZE = 60; // size of each block
         const MAX_HEIGHT = 10; // max height of each block
@@ -36,6 +37,51 @@
                     makeBuilding(initX + xChange, initY + yChange, cityArray[i][j]);
                 }
             }
+=======
+        let BLOCK_SIZE = 50;
+
+        function makeBlock(x, y) {
+            let xChange = BLOCK_SIZE * Math.sqrt(3) / 2;
+            let yChange = BLOCK_SIZE / 2;
+
+            ctx.beginPath();
+            ctx.moveTo(x, y + BLOCK_SIZE);
+            ctx.lineTo(x + xChange, y + yChange);
+            ctx.lineTo(x + xChange, y - yChange);
+            ctx.lineTo(x, y);
+            ctx.lineTo(x, y + BLOCK_SIZE);
+            ctx.fillStyle = "#888";
+            ctx.fill();
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.moveTo(x, y + BLOCK_SIZE);
+            ctx.lineTo(x - xChange, y + yChange);
+            ctx.lineTo(x - xChange, y - yChange);
+            ctx.lineTo(x, y);
+            ctx.lineTo(x, y + BLOCK_SIZE);
+            ctx.fillStyle = "#222";
+            ctx.fill();
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x + xChange, y - yChange);
+            ctx.lineTo(x, y - BLOCK_SIZE);
+            ctx.lineTo(x - xChange, y - yChange);
+            ctx.lineTo(x, y);
+            ctx.fillStyle = "#555";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function makeBuilding() {
+            makeBlock(200, 300);
+        }
+
+        function makeGrid() {
+            makeBuilding();
+>>>>>>> 1bb10e0373eafd3bc59c3ecadef5e6297b914c52
         }
 
         /* runtime */
