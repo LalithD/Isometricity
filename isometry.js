@@ -12,8 +12,7 @@
         /* Constants */
         const BLOCK_SIZE = 30; // size of each block
         const MAX_HEIGHT = 10; // max height of each block
-        const GRID_SIZE = 20; // size of grid (in blocks)
-        const BELOW_TOP = 6 * BLOCK_SIZE; // top of beginning block is 120 below
+        const GRID_SIZE = 40; // size of grid (in blocks)
 
         function makeBlock(x, y) {
             let xChange = BLOCK_SIZE * Math.sqrt(3) / 2;
@@ -85,13 +84,11 @@
 
         function makeGrid(xSize, ySize, height) {
             let cityArray = makeRandArray(xSize, ySize, height);
-            let initX = canvas.width/2;
-            let initY = BELOW_TOP;
             for (let i = 0; i < cityArray.length; i++) {
                 for (let j = 0; j < cityArray[i].length; j++) {
                     let xChange = (j - i) * BLOCK_SIZE * Math.sqrt(3)/2;
-                    let yChange = (i + j) * BLOCK_SIZE / 4;
-                    makeBuilding(initX + xChange, initY + yChange, cityArray[i][j]);
+                    let yChange = (i + j) * BLOCK_SIZE / 2;
+                    makeBuilding(canvas.width/2 + xChange, yChange, cityArray[i][j]);
                 }
             }
         }
