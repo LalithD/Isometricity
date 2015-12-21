@@ -48,16 +48,32 @@
             ctx.fill();
             ctx.closePath();
 
-            if(Math.random() > 0.5) {
-                drawWindowLeft(x - xChange / 9, y + yChange / 9);
-            } if(Math.random() > 0.5) {
-                drawWindowLeft(x - xChange / 2, y + yChange / 9);
-            } if(Math.random() > 0.5) {
-                drawWindowLeft(x - xChange / 9, y + yChange / 2);
-            } if(Math.random() > 0.5) {
-                drawWindowLeft(x - xChange / 2, y + yChange / 2);
+            let lightProbability = 0.2;
+
+            if(Math.random() < lightProbability) {
+                drawWindowLeft(x - xChange/9, y + BLOCK_SIZE / 9);
+            } if(Math.random() < lightProbability) {
+                drawWindowLeft(x - xChange/9, y + 11/18 * BLOCK_SIZE);
+            } if(Math.random() < lightProbability) {
+                drawWindowLeft(x - xChange/9 - xChange/2, y + BLOCK_SIZE / 9 - yChange/2);
+            } if(Math.random() < lightProbability) {
+                drawWindowLeft(x - xChange/9 - xChange/2, y + 11/18 * BLOCK_SIZE - yChange/2);
             }
 
+            if(Math.random() < lightProbability) {
+                drawWindowRight(x + xChange/9, y + BLOCK_SIZE / 9);
+            } if(Math.random() < lightProbability) {
+                drawWindowRight(x + xChange/9, y + 11/18 * BLOCK_SIZE);
+            } if(Math.random() < lightProbability) {
+                drawWindowRight(x + xChange/9 + xChange/2, y + BLOCK_SIZE / 9 - yChange/2);
+            } if(Math.random() < lightProbability) {
+                drawWindowRight(x + xChange/9 + xChange/2, y + 11/18 * BLOCK_SIZE - yChange/2);
+            }
+
+        }
+
+        function getWindowColor() {
+            return "hsla(" + Math.floor(Math.random()*8 + 52) + ",85%," + Math.floor(Math.random()*5 + 55) + "%," + (Math.floor(Math.random()*10) + 25)/100 + ")";
         }
 
         function drawWindowLeft(x, y) {
@@ -71,7 +87,23 @@
             ctx.lineTo(x - xChange, y - yChange);
             ctx.lineTo(x, y);
             ctx.lineTo(x, y + windowSize);
-            ctx.fillStyle = "#d5e612";
+            ctx.fillStyle = getWindowColor();
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function drawWindowRight(x, y) {
+            let windowSize = BLOCK_SIZE / 3;
+            let xChange = windowSize * Math.sqrt(3) / 2;
+            let yChange = windowSize / 2;
+
+            ctx.beginPath();
+            ctx.moveTo(x, y + windowSize);
+            ctx.lineTo(x + xChange, y + yChange);
+            ctx.lineTo(x + xChange, y - yChange);
+            ctx.lineTo(x, y);
+            ctx.lineTo(x, y + windowSize);
+            ctx.fillStyle = getWindowColor();
             ctx.fill();
             ctx.closePath();
         }
