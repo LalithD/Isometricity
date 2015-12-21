@@ -22,7 +22,7 @@
             ctx.lineTo(x + xChange, y - yChange);
             ctx.lineTo(x, y);
             ctx.lineTo(x, y + BLOCK_SIZE);
-            ctx.fillStyle = "#888";
+            ctx.fillStyle = "#555";
             ctx.fill();
             ctx.closePath();
 
@@ -42,7 +42,7 @@
             ctx.lineTo(x, y - BLOCK_SIZE);
             ctx.lineTo(x - xChange, y - yChange);
             ctx.lineTo(x, y);
-            ctx.fillStyle = "#555";
+            ctx.fillStyle = "#888";
             ctx.fill();
             ctx.closePath();
         }
