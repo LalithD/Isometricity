@@ -73,7 +73,7 @@
         }
 
         function getWindowColor() {
-            return "hsla(" + Math.floor(Math.random()*8 + 52) + ",85%," + Math.floor(Math.random()*5 + 55) + "%," + (Math.floor(Math.random()*10) + 25)/100 + ")";
+            return "hsla(" + Math.floor(Math.random()*8 + 52) + ",85%," + Math.floor(Math.random()*5 + 55) + "%," + (Math.floor(Math.random()*10) + 20)/100 + ")";
         }
 
         function drawWindowLeft(x, y) {
