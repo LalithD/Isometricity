@@ -10,9 +10,9 @@
         canvas.height = window.innerHeight;
 
         /* Constants */
-        const BLOCK_SIZE = 30; // size of each block
-        const MAX_HEIGHT = 10; // max height of each block
-        const GRID_SIZE = 40; // size of grid (in blocks)
+        const BLOCK_SIZE = 20; // size of each block
+        const MAX_HEIGHT = 15; // max height of each block
+        const GRID_SIZE = 50; // size of grid (in blocks)
 
         function makeBlock(x, y) {
             let xChange = BLOCK_SIZE * Math.sqrt(3) / 2;
@@ -125,18 +125,31 @@
             }
         }
 
+        let cityArray = makeRandArray(GRID_SIZE, GRID_SIZE, MAX_HEIGHT);
+        function animateLights() {
+            for (let i = 0; i < cityArray.length; i++) {
+                for (let j = 0; j < cityArray[i].length; j++) {
+                    let xChange = (j - i) * BLOCK_SIZE * Math.sqrt(3)/2;
+                    let yChange = (i + j) * BLOCK_SIZE / 2;
+                    makeBuilding(canvas.width/2 + xChange, yChange, cityArray[i][j]);
+                }
+            }
+        }
+
         /* runtime */
+        // var animate = window.setInterval(animateLights, 1000); animate();
         makeGrid(GRID_SIZE, GRID_SIZE, MAX_HEIGHT);
     };
 
     function makeRandArray(xSize, ySize, height) {
-        let array = [];
+        let cityArray = [];
         for (let i = 0; i < xSize; i++) {
-            array[i] = [];
+            cityArray[i] = [];
             for (let j = 0; j < ySize; j++) {
-                array[i][j] = Math.floor(Math.random() * (height+1));
+                cityArray[i][j] = Math.floor(Math.random() * (height+1));
             }
         }
-        return array;
+        console.log(cityArray);
+        return cityArray;
     }
 })();
