@@ -6,11 +6,14 @@
 
         let canvas = document.getElementById("panel");
         let ctx = canvas.getContext("2d");
-
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        let BLOCK_SIZE = 50;
+        /* Constants */
+        const BLOCK_SIZE = 30; // size of each block
+        const MAX_HEIGHT = 10; // max height of each block
+        const GRID_SIZE = 20; // size of grid (in blocks)
+        const BELOW_TOP = 6 * BLOCK_SIZE; // top of beginning block is 120 below
 
         function makeBlock(x, y) {
             let xChange = BLOCK_SIZE * Math.sqrt(3) / 2;
@@ -47,16 +50,29 @@
             ctx.closePath();
         }
 
-        function makeBuilding() {
-            makeBlock(200, 300);
+        function makeBuilding(x, y, height) {
+            for (let i = 0; i < height; i++) {
+                makeBlock(x, y - i * BLOCK_SIZE);
+            }
         }
 
-        function makeGrid() {
-            makeBuilding();
+        function makeGrid(xSize, ySize, height) {
+            let cityArray = makeRandArray(xSize, ySize, height);
+            let initX = canvas.width/2;
+            let initY = BELOW_TOP;
+            for (let i = 0; i < cityArray.length; i++) {
+                for (let j = 0; j < cityArray[i].length; j++) {
+                    let xChange = (j - i) * BLOCK_SIZE * Math.sqrt(3)/2;
+                    let yChange = (i + j) * BLOCK_SIZE / 4;
+                    makeBuilding(initX + xChange, initY + yChange, cityArray[i][j]);
+                }
+            }
         }
 
-        makeGrid();
+        /* runtime */
+        makeGrid(GRID_SIZE, GRID_SIZE, MAX_HEIGHT);
     };
+
     function makeRandArray(xSize, ySize, height) {
         let array = [];
         for (let i = 0; i < xSize; i++) {
